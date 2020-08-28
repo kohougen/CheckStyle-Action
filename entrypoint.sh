@@ -1,5 +1,9 @@
 #!/bin/sh -l
 
-echo "Hello $1"
-time=$(date)
-echo "::set-output name=time::$time"
+echo "Running CheckStyle"
+
+exec java -jar /checkstyle.jar "${INPUT_WORKDIR}" -c "${INPUT_CHECKSTYLE_CONFIG}"  -f xml
+
+# echo "Hello $1"
+# time=$(date)
+# echo "::set-output name=time::$time"

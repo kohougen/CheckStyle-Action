@@ -1,16 +1,30 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Checkstyle'
+description: 'Run Java Checkstyle'
+branding:
+  icon: 'code'  
+  color: 'red'
+
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  github_token:
+    description: 'GITHUB_TOKEN.'
+    default: '${{ github.token }}'
+
+  checkstyle_config:
+    description: 'Checkstyle config file'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: 'google_checks.xml'
+
+  workdir:
+    description: 'Working directory relative to the root directory.'
+    default: '.'
+
+# outputs:
+#   time: # id of output
+#     description: 'The time we greeted you'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.who-to-greet }}
+  # args:
+  #   - ${{ inputs.who-to-greet }}
